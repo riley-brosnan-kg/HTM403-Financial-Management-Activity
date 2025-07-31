@@ -444,13 +444,42 @@ textarea, select, input[type="text"] {
     <h2>Instructions</h2>
     <p>Follow these steps to complete the activity:</p>
     <ol>
-      <li>Read through the user guide above.</li>
+      <li>Login to EBERS. You will use your own facility data to complete this lab.</li>
       <li>Navigate to the "Interactive EBERS Activity" section.</li>
-      <li>Complete each lab by filling out the required fields.</li>
-      <li>Use the copy buttons to copy any necessary information to your clipboard.</li>
+      <li>Complete each activity question by filling out the required fields.</li>
       <li>Submit your completed activity as instructed by your facilitator.</li>
     </ol>
   </div>
+
+  <section class="card">
+    <h2>Activity Questions</h2>
+    <p>Answer the following questions based on your EBERS data:</p>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Points</th>
+          <th>Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>What is the total number of veterans served?</td>
+          <td>5</td>
+          <td><input type="text" placeholder="Enter your answer here"></td>
+        </tr>
+        <tr>
+          <td>How many new claims were processed?</td>
+          <td>10</td>
+          <td><input type="text" placeholder="Enter your answer here"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="copy-container">
+      <input type="text" class="copy-input" value="Sample text to copy" readonly />
+      <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+    </div>
 
 <script>
     const toggle = document.getElementById('theme-toggle');
