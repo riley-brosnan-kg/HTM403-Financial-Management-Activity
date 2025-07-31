@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTM251: Agile Project Management Fundamentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+    :root {
+    --primary: #005ea2;
+    --accent: #cce5ff;
+    --gray-border: #dee2e6;
+}
+
+body.light {
+    --bg-light: #f8f9fa;
+    --text-dark: #212529;
+    --card-bg: white;
+    --header-bg: var(--primary);
+    --input-bg: #f4f4f4;
+    --table-head-bg: #f0f0f0;
+    --table-alt-row-bg: #f9f9f9;
+    --image-border: #ccc;
+}
+
+body.dark {
+    --bg-light: #1c1e21;
+    --text-dark: #e9ecef;
+    --card-bg: #2c2f33;
+    --header-bg: #003d7a;
+    --input-bg: #333840;
+    --table-head-bg: #3a3d41;
+    --table-alt-row-bg: #2a2d31;
+    --image-border: #444;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background: var(--bg-light);
+    padding: 20px;
+    color: var(--text-dark);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1, h2 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+
+.header, .footer {
+    background-color: var(--header-bg);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.header h1 { margin: 0; }
+.footer { margin-top: 40px; }
+
+.lab-section {
+    display: none;
+    background: var(--card-bg);
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 30px;
+    animation: fadeIn 0.4s ease;
+    transition: background 0.3s ease;
+}
+
+.lab-section.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+select, input, textarea {
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+    border: 1px solid var(--gray-border);
+    border-radius: 4px;
+    padding: 6px;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    transition: outline 0.2s ease;
+}
+
+select:hover, input:hover, textarea:hover {
+    outline: 2px solid var(--primary);
+}
+
+.copy-button {
+    padding: 5px 10px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #003d7a;
+}
+
+.copy-button:focus {
+    outline: 2px dashed var(--accent);
+    outline-offset: 2px;
+}
+
+.table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.tr { display: table-row; }
+
+.td, .th {
+    display: table-cell;
+    border: 1px solid var(--gray-border);
+    padding: 10px;
+}
+
+.th {
+    background-color: var(--table-head-bg);
+    font-weight: bold;
+}
+
+.table .tr:nth-child(even) {
+    background-color: var(--table-alt-row-bg);
+}
+
+.copy-container {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-input {
+    flex-grow: 1;
+    padding: 5px;
+    font-family: monospace;
+    font-size: 1rem;
+    border: 1px solid var(--gray-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+}
+
+img {
+    display: block;
+    margin-top: 10px;
+    max-width: 80%;
+    height: auto;
+    border: 1px solid var(--image-border);
+    border-radius: 4px;
+}
+.container {
+    max-width: 960px;
+    margin: auto;
+}
+
+.theme-toggle {
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.theme-toggle label {
+    background-color: var(--card-bg);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border: 1px solid var(--gray-border);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.theme-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.theme-switch .slider {
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.theme-switch .slider::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.theme-switch input:checked + .slider {
+    background-color: var(--primary);
+}
+
+.theme-switch input:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+.switch-label {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 1rem;
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+}
+
+.styled-table th,
+.styled-table td {
+    border: 1px solid var(--gray-border);
+    padding: 12px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.styled-table thead th {
+    background-color: var(--table-head-bg);
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: var(--table-alt-row-bg);
+}
+.info-box {
+  margin-top: 10px;
+  padding: 10px;
+  border-left: 3px solid var(--primary);
+  background-color: var(--table-alt-row-bg);
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 1rem;
+  background-color: var(--card-bg);
+  color: var(--text-dark);
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid var(--gray-border);
+  padding: 10px;
+  vertical-align: top;
+}
+
+.styled-table thead th {
+  background-color: var(--table-head-bg);
+}
+
+textarea, select, input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-dark);
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+}
+.toggle-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #003d7a;
+}
+  .radio-group label,
+  .checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    margin-left: 1em;
+    margin-top: 0.5em;
+  }
+
+  .radio-group input[type="radio"],
+  .checkbox-group input[type="checkbox"] {
+    flex-shrink: 0;
+  }
+  .form-group {
+    margin-bottom: 1em;
+  }
+
+  .form-group strong {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+
+  .form-inline-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding-left: 1em;
+}
+
+.form-inline-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: normal;
+}
+.form-vertical-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-vertical-options label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  max-width: 50px; 
+  background: transparent;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+}
+
+.form-vertical-options input[type="radio"] {
+  flex: 0 0 auto;
+  margin-top: 0.2em;
+}
+
+.form-vertical-options span {
+  flex: auto;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+</style>
+</head>
+<body>
+    <header class="header"><h1>HTM251: Agile Project Management Fundamentals Labs</h1></header>
+    <div class="card filter-bar">
+  <label for="labFilter"><strong>Select Lab:</strong></label>
+  <select id="labFilter" onchange="filterLabs()">
+    <option value="">----Select----</option>
+    <option value="User Guide" selected>User Guide</option>
+    <option value="Scenario">Scenario</option>
+    <option value="Lab 1">Lab 1</option>
+    <option value="Lab 2">Lab 2</option>
+    <option value="Lab 3">Lab 3</option>
+    <option value="Lab 4">Lab 4</option>
+    <option value="Lab 5">Lab 5</option>
+  </select>
+
+  <label class="theme-switch">
+    <input type="checkbox" id="theme-toggle">
+    <span class="slider"></span>
+    <span class="switch-label">Dark Mode</span>
+  </label>
+</div>
+
+
+<section class="lab-section active" data-lab="User Guide">
+  <div class="card">
+    <h2>User Guide</h2>
+    <p>Welcome to the HTM251 Agile Labs. Here's how to get started:</p>
+    <ol>
+      <li>Read the entire scenario — only parts appear in each lab, but understanding the full story is essential.</li>
+      <li>Use the dropdown above to select the lab you want to complete.</li>
+      <li>Complete all required fields in each lab. Open-text fields are resizable using the bottom-right corner.</li>
+      <li>Ask questions! Your instructors are here to support you.</li>
+    </ol>
+    <p><strong>Have comments or feedback?</strong> <a href="https://kevin-jeter-kg.github.io/" target="_blank">Fill out this quick survey.</a></p>
+  </div>
+</section>
+
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.classList.add(savedTheme);
+    toggle.checked = savedTheme === 'dark';
+
+    toggle.addEventListener('change', () => {
+        body.classList.toggle('dark', toggle.checked);
+        body.classList.toggle('light', !toggle.checked);
+        localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
+    });
+
+function filterLabs() {
+    var selected = document.getElementById("labFilter").value;
+    document.querySelectorAll(".lab-section").forEach(section => {
+        section.classList.remove("active");
+        if (section.dataset.lab === selected) {
+            section.classList.add("active");
+        }
+    });
+}
+
+function copyToClipboard(button) {
+    const container = button.closest('.copy-container');
+    const input = container.querySelector('.copy-input');
+    input.select();
+    input.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(input.value).then(() => {
+        button.textContent = 'Copied!';
+        setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+    });
+}
+
+function toggleVisibility(id) {
+    const el = document.getElementById(id);
+    if (el.style.display === "none" || el.style.display === "") {
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  }
+</script>
+<footer class="footer">
+    © 2025 Department of Veterans Affairs. All rights reserved.
+</footer>
+<script>
+  window.addEventListener("beforeunload", function (e) {
+      e.preventDefault();
+      e.returnValue = "Are you sure you want to leave? Your answers will be lost.";
+  });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const checkboxes = document.querySelectorAll('table.styled-table input[type="checkbox"]');
+  const totalPointsEl = document.getElementById('total_points');
+
+  function updateTotalPoints() {
+    let total = 0;
+
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        const row = checkbox.closest('tr');
+        const pointsCell = row.children[2]; // 3rd column = points
+        const points = parseInt(pointsCell.textContent.trim(), 10);
+        if (!isNaN(points)) {
+          total += points;
+        }
+      }
+    });
+
+    totalPointsEl.textContent = total;
+  }
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateTotalPoints);
+  });
+
+  // Calculate on initial load
+  updateTotalPoints();
+});
+</script>
+</body>
+</html>
