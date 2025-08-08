@@ -639,19 +639,22 @@ textarea, select, input[type="text"] {
     box-shadow: 0 0 5px #0078D7;
   }
 
-  /* Effect box on bottom right */
-  .effect-box {
-    grid-column: 3 / 4;
-    grid-row: 1 / 7;
-    border: 3px solid black;
-    min-width: 160px;
-    min-height: 80px;
-    padding: 15px;
-    font-weight: bold;
-    background: #f0f0f0;
-    text-align: center;
-    justify-self: center;
-  }
+ .effect-box {
+  grid-column: 3 / 4;       /* same column as spine */
+  grid-row: 7 / 8;          /* row below the spine */
+  border: 3px solid black;
+  min-width: 160px;
+  min-height: 80px;
+  padding: 15px;
+  font-weight: bold;
+  background: #f0f0f0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;     /* center horizontally */
+}
+  
 
   .effect-box input {
     width: 100%;
