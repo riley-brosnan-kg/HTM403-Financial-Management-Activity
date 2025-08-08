@@ -784,64 +784,151 @@ textarea, select, input[type="text"] {
     border-radius: 4px;
     width: 100%;
   }
+<style>
+  .fishbone-container {
+    display: grid;
+    grid-template-columns: 1fr 40px 4px 40px 1fr;
+    grid-template-rows: repeat(6, 110px); /* increased from 80px */
+    align-items: center;
+    justify-items: center;
+    gap: 5px 20px;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    position: relative;
+  }
+
+  /* Main vertical spine line */
+  .spine {
+    grid-column: 3 / 4;
+    grid-row: 1 / 7;
+    border-left: 4px solid black;
+    height: 100%;
+    position: relative;
+    justify-self: center;
+  }
+
+  /* Category container on left side */
+  .category-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px; /* increased from 6px */
+    width: 100%;
+  }
+
+  /* Category container on right side */
+  .category-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px; /* increased from 6px */
+    width: 100%;
+  }
+
+  /* Input for category names */
+  input.category-input {
+    width: 120px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 2px solid #444;
+    border-radius: 5px;
+    padding: 4px 6px;
+    text-align: center;
+    max-length: 20;
+  }
+  input.category-input::placeholder {
+    font-weight: normal;
+    font-style: italic;
+    color: #999;
+  }
+  input.category-input:focus {
+    outline: none;
+    border-color: #0078D7;
+    box-shadow: 0 0 5px #0078D7;
+  }
+
+  /* Input for causes */
+  input.cause-input {
+    width: 110px;
+    max-width: 110px;
+    padding: 4px 6px;
+    font-size: 0.85rem;
+    border: 1px solid #777;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+  }
+  input.cause-input:focus {
+    outline: none;
+    border-color: #0078D7;
+    box-shadow: 0 0 5px #0078D7;
+  }
+
+  /* Branch lines */
+  .branch-left {
+    width: 60px;
+    height: 2px;
+    background: black;
+    transform: rotate(-30deg);
+    transform-origin: right center;
+    justify-self: end;
+  }
+  .branch-right {
+    width: 60px;
+    height: 2px;
+    background: black;
+    transform: rotate(30deg);
+    transform-origin: left center;
+    justify-self: start;
+  }
+
+  /* Effect box */
+  .effect-box {
+    grid-column: 5 / 6;
+    grid-row: 3 / 5;
+    border: 3px solid black;
+    min-width: 160px;
+    min-height: 80px;
+    padding: 15px;
+    font-weight: bold;
+    background: #f0f0f0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .effect-box input {
+    margin-top: 12px;
+    padding: 6px 8px;
+    font-size: 1rem;
+    border: 1px solid #777;
+    border-radius: 4px;
+    width: 100%;
+  }
 </style>
-
-<div class="fishbone-container">
-
-  <!-- Left side rows -->
-  <div class="category-left" style="grid-column: 1 / 2; grid-row: 1;">
-    <input type="text" class="category-input" maxlength="20" placeholder="Category">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
+    <div class="fishbone-container">
+      <div class="category-left">
+        <label for="category1">Category 1:</label>
+        <input type="text" class="category-input" id="category1" placeholder="Enter category name">
+        <div class="branch-left"></div>
+        <input type="text" class="cause-input" placeholder="Cause 1">
+        <input type="text" class="cause-input" placeholder="Cause 2">
+      </div>
+      <div class="spine"></div>
+      <div class="branch-right"></div>
+      <div class="category-right">
+        <label for="category2">Category 2:</label>
+        <input type="text" class="category-input" id="category2" placeholder="Enter category name">
+        <div class="branch-right"></div>
+        <input type="text" class="cause-input" placeholder="Cause 1">
+        <input type="text" class="cause-input" placeholder="Cause 2">
+      </div>
+      <div class="effect-box">
+        <strong>Effect:</strong>
+        <input type="text" placeholder="Describe the effect here">
+      </div>
+    </div>
   </div>
-  <div class="branch-left" style="grid-column: 2 / 3; grid-row: 1;"></div>
-
-  <div class="category-left" style="grid-column: 1 / 2; grid-row: 2;">
-    <input type="text" class="category-input" maxlength="20" placeholder="Category">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
-  </div>
-  <div class="branch-left" style="grid-column: 2 / 3; grid-row: 2;"></div>
-
-  <div class="category-left" style="grid-column: 1 / 2; grid-row: 3;">
-    <input type="text" class="category-input" maxlength="20" placeholder="Category">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
-  </div>
-  <div class="branch-left" style="grid-column: 2 / 3; grid-row: 3;"></div>
-
-  <!-- Right side rows -->
-  <div class="branch-right" style="grid-column: 4 / 5; grid-row: 1;"></div>
-  <div class="category-right" style="grid-column: 5 / 6; grid-row: 1;">
-    <input type="text" class="category-input" maxlength="20" placeholder="Category">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
-  </div>
-
-  <div class="branch-right" style="grid-column: 4 / 5; grid-row: 2;"></div>
-  <div class="category-right" style="grid-column: 5 / 6; grid-row: 2;">
-    <input type="text" class="category-input" maxlength="20" placeholder="Category">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
-  </div>
-
-  <div class="branch-right" style="grid-column: 4 / 5; grid-row: 3;"></div>
-  <div class="category-right" style="grid-column: 5 / 6; grid-row: 3;">
-    <input type="text" class="category-input" maxlength="20" placeholder="Category">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
-    <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
-  </div>
-
-  <!-- Main spine -->
-  <div class="spine"></div>
-
-  <!-- Effect box -->
-  <div class="effect-box">
-    Effect
-    <input type="text" maxlength="30" placeholder="Enter effect">
-  </div>
-
-</div>
 
 </section>
 
