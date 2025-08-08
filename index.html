@@ -630,6 +630,123 @@ textarea, select, input[type="text"] {
 </div>
 
   </div>
+
+<style>
+  .fishbone-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .fishbone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    width: 700px;
+    border-bottom: 4px solid black; /* Main spine */
+  }
+
+  .category {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+
+  .category.left {
+    flex-direction: row;
+  }
+
+  .category.right {
+    flex-direction: row-reverse;
+  }
+
+  .branch {
+    border-top: 2px solid black;
+    flex: 1;
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .category label {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .cause-input {
+    width: 90px;
+    font-size: 0.8rem;
+    padding: 2px;
+    margin: 2px 0;
+  }
+
+  .effect-box {
+    min-width: 150px;
+    min-height: 60px;
+    border: 3px solid black;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f8f8f8;
+  }
+</style>
+
+<div class="fishbone-container">
+  <div class="fishbone">
+    <!-- Top left categories -->
+    <div class="category left">
+      <div>
+        <label>Equipment</label>
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
+      </div>
+      <div class="branch"></div>
+    </div>
+
+    <div class="category left">
+      <div>
+        <label>Process</label>
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
+      </div>
+      <div class="branch"></div>
+    </div>
+
+    <!-- Bottom left categories -->
+    <div class="category right">
+      <div>
+        <label>People</label>
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
+      </div>
+      <div class="branch"></div>
+    </div>
+
+    <div class="category right">
+      <div>
+        <label>Materials</label>
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 1">
+        <input type="text" class="cause-input" maxlength="30" placeholder="Cause 2">
+      </div>
+      <div class="branch"></div>
+    </div>
+  </div>
+
+  <!-- Effect box -->
+  <div class="effect-box">
+    Effect
+    <br>
+    <input type="text" maxlength="30" placeholder="Enter effect">
+  </div>
+</div>
+
 </section>
 
 <script>
